@@ -1,12 +1,21 @@
-// Package tasks holds some concrete tasks that can be run in factory.
-package tasks
+// Package factory contains HTTPTask and HTTPBoss. These are concrete
+// implementions of Boss and Task interfaces.
+package factory
 
 import (
 	"fmt"
 	"net/http"
-
-	"github.com/jreisinger/work/factory"
 )
+
+// HTTPBoss represents HTTP tasks generator.
+type HTTPBoss struct{}
+
+// Create creates HTTP tasks.
+func (b *HTTPBoss) Create(line string) Task {
+	h := &HTTPTask{}
+	h.URL = line
+	return h
+}
 
 // HTTPTask represents a URL and whether it's OK.
 type HTTPTask struct {
@@ -30,14 +39,4 @@ func (h *HTTPTask) Process() {
 // Output prints URL and whether it's OK.
 func (h *HTTPTask) Output() {
 	fmt.Printf("%s %t\n", h.URL, h.OK)
-}
-
-// HTTPBoss represents HTTP tasks generator.
-type HTTPBoss struct{}
-
-// Create creates HTTP tasks.
-func (b *HTTPBoss) Create(line string) factory.Task {
-	h := &HTTPTask{}
-	h.URL = line
-	return h
 }

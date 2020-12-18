@@ -1,5 +1,5 @@
-// Package factory implements a scalable work system. It can generate and work
-// on many tasks concurrently.
+// Package factory is a scalable work system. It can generate and work
+// on many tasks concurrently. To Run a factory you need a Boss and a Task.
 package factory
 
 import (
