@@ -9,15 +9,15 @@ import (
 	"sync"
 )
 
+// Boss creates tasks from lines of text supplied on STDIN.
+type Boss interface {
+	Create(line string) Task
+}
+
 // Task is anything that can be processed and generate some output.
 type Task interface {
 	Process()
 	Output()
-}
-
-// Boss creates tasks from lines of text supplied on STDIN.
-type Boss interface {
-	Create(line string) Task
 }
 
 // Run spawns a Boss and n workers. Boss generates tasks that are load balanced

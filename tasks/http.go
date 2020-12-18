@@ -1,5 +1,5 @@
-// Package jobs holds some concrete jobs that can be run in factory.
-package jobs
+// Package tasks holds some concrete tasks that can be run in factory.
+package tasks
 
 import (
 	"fmt"
