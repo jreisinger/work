@@ -20,7 +20,7 @@ type Task interface {
 	Output()
 }
 
-// Run spawns a Boss and n workers. Boss generates tasks that are load balanced
+// Run spawns a Boss and workers. Boss generates tasks that are load balanced
 // among workers.
 func Run(b Boss, workers int) {
 	var wg sync.WaitGroup
