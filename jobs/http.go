@@ -8,13 +8,13 @@ import (
 	"github.com/jreisinger/work/factory"
 )
 
-// HTTPTask represents a URL and whether it returns 200.
+// HTTPTask represents a URL and whether it's OK.
 type HTTPTask struct {
 	URL string
 	OK  bool
 }
 
-// Process tries to get a URL and sets OK to true if successfull.
+// Process tries to get a URL and sets OK to true if it returns 200.
 func (h *HTTPTask) Process() {
 	resp, err := http.Get(h.URL)
 	if err != nil {
@@ -27,7 +27,7 @@ func (h *HTTPTask) Process() {
 	}
 }
 
-// Output prints URL and its status.
+// Output prints URL and whether it's OK.
 func (h *HTTPTask) Output() {
 	fmt.Printf("%s %t\n", h.URL, h.OK)
 }

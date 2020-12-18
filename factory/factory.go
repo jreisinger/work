@@ -20,9 +20,9 @@ type Boss interface {
 	Create(line string) Task
 }
 
-// Run spawns a Boss and n workers. Boss generates tasks and workers work on
-// them.
-func Run(b Boss, n int) {
+// Run spawns a Boss and n workers. Boss generates tasks that are load balanced
+// among workers.
+func Run(b Boss, workers int) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
 	out := make(chan Task)
@@ -42,7 +42,7 @@ func Run(b Boss, n int) {
 	}()
 
 	// Create workers to process the tasks.
-	for i := 0; i < n; i++ {
+	for i := 0; i < workers; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
