@@ -8,11 +8,11 @@ import (
 	"github.com/jreisinger/work"
 )
 
-// HTTTGenerator represents HTTP tasks generator.
-type HTTTGenerator struct{}
+// HTTPGenerator represents HTTP tasks generator.
+type HTTPGenerator struct{}
 
 // Generate generates HTTP tasks.
-func (b *HTTTGenerator) Generate(line string) work.Task {
+func (b *HTTPGenerator) Generate(line string) work.Task {
 	h := &HTTPTask{}
 	h.URL = line
 	return h
