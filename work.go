@@ -21,7 +21,8 @@ type Task interface {
 }
 
 // Do spawns generator and workers. Generator generates tasks that are load
-// balanced among workers.
+// balanced among workers who process them. When task is processed its output is
+// printed.
 func Do(g Generator, workers int) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
