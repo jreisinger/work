@@ -1,10 +1,6 @@
-Work is a scalable work system using Go goroutines, channels and interfaces. It
-can generate and work on many tasks concurrently. To use it you need to
-implement Generator and Task. See `example`.
-
-Adapted from John Graham-Cumming's [talk](https://github.com/jgrahamc/dotgo).
-
-Usage:
+Work is a scalable work system that can generate and work on many tasks
+concurrently. To use it you need to implement `Generator` and `Task`
+interfaces. See `example` package for such implementation.
 
 ```go
 package main
@@ -28,3 +24,5 @@ func main() {
 ```bash
 go run main.go < urls.txt
 ```
+
+Adapted from John Graham-Cumming's [talk](https://github.com/jgrahamc/dotgo).
