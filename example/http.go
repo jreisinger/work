@@ -37,7 +37,7 @@ func (h *HTTPTask) Process() {
 	}
 }
 
-// Output prints URL and whether it's OK.
-func (h *HTTPTask) Output() {
+// Print prints URL and whether it's OK.
+func (h *HTTPTask) Print() {
 	fmt.Printf("%s %t\n", h.URL, h.OK)
 }

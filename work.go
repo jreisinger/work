@@ -1,5 +1,5 @@
-// Package work is a scalable work system. It can generate and work
-// on many tasks concurrently. To Run a factory you need a Boss and a Task.
+// Package work is a scalable work system. It can generate and work on many
+// tasks concurrently. To use it you need to implement Generator and Task.
 package work
 
 import (
@@ -17,12 +17,12 @@ type Generator interface {
 // Task needs to be processed and print something to STDOUT.
 type Task interface {
 	Process()
-	Output()
+	Print()
 }
 
 // Do spawns generator and workers. Generator generates tasks that are load
 // balanced among workers.
-func Do(b Generator, workers int) {
+func Do(g Generator, workers int) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
 	out := make(chan Task)
@@ -34,7 +34,7 @@ func Do(b Generator, workers int) {
 		defer close(in)
 		s := bufio.NewScanner(os.Stdin)
 		for s.Scan() {
-			in <- b.Generate(s.Text())
+			in <- g.Generate(s.Text())
 		}
 		if s.Err() != nil {
 			log.Fatalf("error reading STDIN: %s", s.Err())
@@ -59,6 +59,6 @@ func Do(b Generator, workers int) {
 	}()
 
 	for t := range out {
-		t.Output()
+		t.Print()
 	}
 }
