@@ -27,9 +27,6 @@ type HTTPTask struct {
 }
 
 func (h *HTTPTask) Process() {
-	if h.url == "" {
-		return
-	}
 	resp, err := http.Get(h.URL)
 	if err != nil {
 		h.OK = false
