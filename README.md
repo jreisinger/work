@@ -34,7 +34,6 @@ func (h *HTTPTask) Process() {
 	}
 	if resp.StatusCode == http.StatusOK {
 		h.OK = true
-		return
 	}
 }
 
