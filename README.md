@@ -52,6 +52,7 @@ func main() {
 ```
 
 ```bash
+go get -u github.com/jreisinger/work
 go run main.go < urls.txt
 ```
 
