@@ -1,6 +1,8 @@
-Work is a scalable work system that can generate and work on many tasks
-*concurrently*. To use it you need to implement `Generator` and `Task`
-interfaces, for example:
+Package work generates tasks from lines of STDIN, processes them concurrently
+and prints to STDOUT. To use it you just need to implement Generator and Task
+interfaces.
+
+For example:
 
 ```go
 package main
@@ -59,4 +61,4 @@ go get -u github.com/jreisinger/work
 go run main.go < urls.txt
 ```
 
-Adapted from John Graham-Cumming's [talk](https://github.com/jgrahamc/dotgo).
+Adapted from John Graham-Cumming's [talk](https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014).

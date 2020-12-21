@@ -1,5 +1,6 @@
-// Package work is a scalable work system. It can generate and work on many
-// tasks concurrently. To use it you need to implement Generator and Task.
+// Package work generates tasks from lines of STDIN, processes them concurrently
+// and prints to STDOUT. To use it you just need to implement Generator and Task
+// interfaces.
 package work
 
 import (
@@ -14,7 +15,7 @@ type Generator interface {
 	Generate(line string) Task
 }
 
-// Task needs to be processed and print something to STDOUT.
+// Task is anything that can be processed and print the result to STDOUT.
 type Task interface {
 	Process()
 	Print()
