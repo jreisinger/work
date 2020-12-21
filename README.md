@@ -1,5 +1,5 @@
 Work is a scalable work system that can generate and work on many tasks
-concurrently. To use it you need to implement `Generator` and `Task`
+*concurrently*. To use it you need to implement `Generator` and `Task`
 interfaces, for example:
 
 ```go

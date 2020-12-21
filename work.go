@@ -28,7 +28,7 @@ func Do(g Generator, workers int) {
 	in := make(chan Task)
 	out := make(chan Task)
 
-	// Create tasks that will be processed.
+	// Generate tasks that will be processed.
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
