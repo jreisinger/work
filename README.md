@@ -38,7 +38,11 @@ func (h *HTTPTask) Process() {
 }
 
 func (h *HTTPTask) Print() {
-	fmt.Printf("%s %t\n", h.URL, h.OK)
+	status := map[bool]string{
+		true:  "OK",
+		false: "FAIL",
+	}
+	fmt.Printf("%-60s %s\n", h.URL, status[h.OK])
 }
 
 func main() {
