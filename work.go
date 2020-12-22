@@ -10,8 +10,8 @@ import (
 	"sync"
 )
 
-// Generator generates tasks from lines supplied on STDIN.
-type Generator interface {
+// Factory generates tasks from lines supplied on STDIN.
+type Factory interface {
 	Generate(line string) Task
 }
 
@@ -21,10 +21,10 @@ type Task interface {
 	Print()
 }
 
-// Do spawns generator and workers. Generator generates tasks that are load
+// Run spawns factory and workers. Factory generates tasks that are load
 // balanced among workers who process them. When task is processed its output is
 // printed.
-func Do(g Generator, workers int) {
+func Run(g Factory, workers int) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
 	out := make(chan Task)
