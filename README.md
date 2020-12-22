@@ -1,5 +1,5 @@
 Package work generates tasks from lines of STDIN, processes them concurrently
-and prints to STDOUT. To use it you just need to implement Generator and Task
+and prints to STDOUT. To use it you just need to implement Factory and Task
 interfaces.
 
 For example:
@@ -8,51 +8,51 @@ For example:
 package main
 
 import (
-	"flag"
-	"fmt"
-	"net/http"
+        "flag"
+        "fmt"
+        "net/http"
 
-	"github.com/jreisinger/work"
+        "github.com/jreisinger/work"
 )
 
-type HTTPGenerator struct{}
+type HTTPFactory struct{}
 
-func (b *HTTPGenerator) Generate(line string) work.Task {
-	h := &HTTPTask{}
-	h.URL = line
-	return h
+func (b *HTTPFactory) Generate(line string) work.Task {
+        h := &HTTPTask{}
+        h.URL = line
+        return h
 }
 
 type HTTPTask struct {
-	URL string
-	OK  bool
+        URL string
+        OK  bool
 }
 
 func (h *HTTPTask) Process() {
-	resp, err := http.Get(h.URL)
-	if err != nil {
-		h.OK = false
-		return
-	}
-	if resp.StatusCode == http.StatusOK {
-		h.OK = true
-	}
+        resp, err := http.Get(h.URL)
+        if err != nil {
+                h.OK = false
+                return
+        }
+        if resp.StatusCode == http.StatusOK {
+                h.OK = true
+        }
 }
 
 func (h *HTTPTask) Print() {
-	status := map[bool]string{
-		true:  "OK",
-		false: "FAIL",
-	}
-	fmt.Printf("%-60s %s\n", h.URL, status[h.OK])
+        status := map[bool]string{
+                true:  "OK",
+                false: "FAIL",
+        }
+        fmt.Printf("%-60s %s\n", h.URL, status[h.OK])
 }
 
 func main() {
-	n := flag.Int("n", 100, "number of workers")
-	flag.Parse()
+        n := flag.Int("n", 100, "number of concurrent workers")
+        flag.Parse()
 
-	g := &HTTPGenerator{}
-	work.Do(g, *n)
+        f := &HTTPFactory{}
+        work.Run(f, *n)
 }
 ```
 

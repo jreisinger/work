@@ -1,5 +1,5 @@
 // Package work generates tasks from lines of STDIN, processes them concurrently
-// and prints to STDOUT. To use it you just need to implement Generator and Task
+// and prints to STDOUT. To use it you just need to implement Factory and Task
 // interfaces.
 package work
 
@@ -21,7 +21,7 @@ type Task interface {
 	Print()
 }
 
-// Run spawns factory and workers. Factory generates tasks that are load
+// Run runs factory and workers. Factory generates tasks that are load
 // balanced among workers who process them. When task is processed its output is
 // printed.
 func Run(g Factory, workers int) {
