@@ -1,5 +1,6 @@
-// Package work generates tasks from lines of STDIN, processes them concurrently
-// and prints to STDOUT. To use it you just need to implement Factory and Task
+// Package work concurrently generates and processes tasks. The tasks are
+// generated from lines supplied on STDIN. The results of tasks processing are
+// then printed on STDOUT. To use it you just need to implement Factory and Task
 // interfaces.
 package work
 
@@ -15,16 +16,16 @@ type Factory interface {
 	Generate(line string) Task
 }
 
-// Task is anything that can be processed and print the result to STDOUT.
+// Task is anything that can be processed and print the result on STDOUT.
 type Task interface {
 	Process()
 	Print()
 }
 
-// Run runs factory and workers. Factory generates tasks that are load
-// balanced among workers who process them. When task is processed its output is
-// printed.
-func Run(g Factory, workers int) {
+// Run concurrently runs factory and n workers. Factory generates tasks that are
+// load balanced among workers. Workers process the tasks. When all tasks are
+// processed the results are printed.
+func Run(f Factory, n int) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
 	out := make(chan Task)
@@ -36,7 +37,7 @@ func Run(g Factory, workers int) {
 		defer close(in)
 		s := bufio.NewScanner(os.Stdin)
 		for s.Scan() {
-			in <- g.Generate(s.Text())
+			in <- f.Generate(s.Text())
 		}
 		if s.Err() != nil {
 			log.Fatalf("error reading STDIN: %s", s.Err())
@@ -44,7 +45,7 @@ func Run(g Factory, workers int) {
 	}()
 
 	// Create workers to process the tasks.
-	for i := 0; i < workers; i++ {
+	for i := 0; i < n; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()

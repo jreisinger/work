@@ -1,5 +1,6 @@
-Package work generates tasks from lines of STDIN, processes them concurrently
-and prints to STDOUT. To use it you just need to implement Factory and Task
+Package work concurrently generates and processes tasks. The tasks are
+generated from lines supplied on STDIN. The results of tasks processing are
+then printed on STDOUT. To use it you just need to implement Factory and Task
 interfaces.
 
 For example:
