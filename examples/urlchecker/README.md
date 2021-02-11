@@ -1,4 +1,4 @@
 ```bash
 go build
-./urlchecker.go < urls.txt
+./urlchecker -w 10 < urls.txt
 ```
