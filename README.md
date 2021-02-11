@@ -14,7 +14,7 @@ type Task interface{ ... }
 See `examples` folder sample implementations.
 
 ```bash
-cd examples
+cd examples/urlchecker
 go run urlchecker.go < urls.txt
 ```
 
