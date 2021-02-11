@@ -1,3 +1,4 @@
+```
 package work // import "github.com/jreisinger/work"
 
 Package work is useful for building CLI tools that need to run many tasks
@@ -11,3 +12,4 @@ https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014
 func Run(f Factory, w int)
 type Factory interface{ ... }
 type Task interface{ ... }
+```
