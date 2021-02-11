@@ -1,7 +1,13 @@
+package work // import "github.com/jreisinger/work"
+
 Package work concurrently generates and processes tasks. The tasks are
 generated from lines supplied on STDIN. The results of tasks processing are
-then printed on STDOUT. To use it you just need to implement Factory and Task
-interfaces.
+then printed on STDOUT. To use it you just need to implement Factory and
+Task interfaces.
+
+func Run(f Factory, n int)
+type Factory interface{ ... }
+type Task interface{ ... }
 
 For example:
 
