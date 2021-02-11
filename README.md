@@ -11,7 +11,7 @@ type Factory interface{ ... }
 type Task interface{ ... }
 ```
 
-See `examples` folder sample implementations.
+See `examples` folder for sample implementations.
 
 ```bash
 cd examples/urlchecker
