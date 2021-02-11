@@ -11,7 +11,8 @@ import (
 type factory struct{}
 
 func (f *factory) Generate(line string) work.Task {
-	return &task{URL: line}
+	t := &task{URL: line}
+	return t
 }
 
 type task struct {
