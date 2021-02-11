@@ -1,6 +1,6 @@
 // Package work concurrently generates and processes tasks. The tasks are
-// generated from lines supplied on STDIN. The results of tasks processing are
-// then printed on STDOUT. To use it you just need to implement Factory and Task
+// generated from lines supplied on STDIN. After each task is processed a result
+// is printed on STDOUT. To use it you just need to implement Factory and Task
 // interfaces.
 package work
 
@@ -16,16 +16,17 @@ type Factory interface {
 	Generate(line string) Task
 }
 
-// Task is anything that can be processed and print the result on STDOUT.
+// Task is anything that can be processed. The result of the processing is then
+// be printed on STDOUT.
 type Task interface {
 	Process()
 	Print()
 }
 
-// Run concurrently runs factory and n workers. Factory generates tasks that are
+// Run concurrently runs Factory and w workers. Factory generates tasks that are
 // load balanced among workers. Workers process the tasks. When all tasks are
 // processed the results are printed.
-func Run(f Factory, n int) {
+func Run(f Factory, w int) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
 	out := make(chan Task)
@@ -45,7 +46,7 @@ func Run(f Factory, n int) {
 	}()
 
 	// Create workers to process the tasks.
-	for i := 0; i < n; i++ {
+	for i := 0; i < w; i++ {
 		wg.Add(1)
 		go func() {
 			defer wg.Done()
