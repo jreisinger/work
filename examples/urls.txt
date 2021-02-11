@@ -1,0 +1,5 @@
+https://golang.org/doc
+https://perl.org
+https://perl.org/python
+https://reisinge.net/notes/go/basics
+https://nonexistent.net
