@@ -1,3 +1,4 @@
+```
 package work // import "github.com/jreisinger/work"
 
 Package work concurrently generates and processes tasks. The tasks are
@@ -8,6 +9,7 @@ Task interfaces.
 func Run(f Factory, n int)
 type Factory interface{ ... }
 type Task interface{ ... }
+```
 
 For example:
 
