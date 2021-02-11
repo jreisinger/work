@@ -13,9 +13,4 @@ type Task interface{ ... }
 
 See `examples` folder for sample implementations.
 
-```bash
-cd examples/urlchecker
-go run urlchecker.go < urls.txt
-```
-
 Adapted from John Graham-Cumming's [talk](https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014).
