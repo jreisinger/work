@@ -16,17 +16,22 @@ func (f *factory) Generate(line string) work.Task {
 
 type task struct {
 	filename string
+	ok       bool
 }
 
 func (t *task) Process() {
 	err := compress(t.filename)
 	if err != nil {
 		log.Printf("compressing %s: %v\n", t.filename, err)
+		return
 	}
+	t.ok = true
 }
 
 func (t *task) Print() {
-	fmt.Printf("created %s\n", t.filename+".gz")
+	if t.ok {
+		fmt.Printf("created %s\n", t.filename+".gz")
+	}
 }
 
 func main() {
