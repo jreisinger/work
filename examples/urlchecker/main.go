@@ -43,5 +43,5 @@ func main() {
 	flag.Parse()
 
 	f := &factory{}
-	work.Run(f, *w)
+	work.Run(f, *w, flag.Args())
 }

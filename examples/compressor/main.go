@@ -36,5 +36,5 @@ func (t *task) Print() {
 
 func main() {
 	f := &factory{}
-	work.Run(f, 100)
+	work.Run(f, 100, []string{})
 }

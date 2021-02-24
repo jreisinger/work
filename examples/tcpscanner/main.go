@@ -48,5 +48,5 @@ func main() {
 
 	host := flag.Args()[0]
 	f := &factory{host: host}
-	work.Run(f, *w)
+	work.Run(f, *w, []string{})
 }

@@ -1,7 +1,8 @@
 Package work is useful for building CLI tools that need to run many tasks
 quickly. It concurrently generates and processes tasks. The tasks are
-generated from lines supplied on STDIN and load balanced among workers for
-processing. After each task is processed a result is printed on STDOUT.
+generated from lines read from file(s) or STDIN and load balanced among
+workers for processing. After each task is processed a result is printed on
+STDOUT.
 
 To use it you just need to implement Factory and Task interfaces. Then Run
 the Factory. See [examples](examples) folder for sample implementations.
