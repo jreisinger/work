@@ -1,8 +1,6 @@
 // Package work is useful for building CLI tools that need to run many tasks
 // concurrently. To use it implement Factory and Task interfaces. Then Run the
-// Factory.
-
-// Adapted from https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014
+// Factory. https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014
 package work
 
 import (
@@ -14,8 +12,8 @@ import (
 
 // Run concurrently runs Factory and workers. Factory generates tasks from lines
 // read from filenames or from STDIN if filenames is empty. The tasks are load
-// balanced among workers that process them. When all tasks are processed the
-// results are printed on STDOUT.
+// balanced among workers that process them. When a task is processed its result
+// is printed on STDOUT.
 func Run(f Factory, workers int, filenames []string) {
 	var wg sync.WaitGroup
 	in := make(chan Task)
