@@ -1,6 +1,8 @@
 // Package work is useful for building CLI tools that need to run many tasks
 // concurrently. To use it implement Factory and Task interfaces. Then Run the
-// Factory. https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014
+// Factory.
+//
+// Taken from https://github.com/cloudflare/jgc-talks/tree/master/dotGo/2014.
 package work
 
 import (
